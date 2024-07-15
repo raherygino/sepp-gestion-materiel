@@ -36,20 +36,20 @@ app.installTranslator(translator)
 app.installTranslator(galleryTranslator)
 
 # Create a splash screen
-'''pixmap = QPixmap("app/resource/images/eniap.png")
+pixmap = QPixmap("app/resource/images/logo_29.png")
 splash = QSplashScreen(pixmap, Qt.WindowStaysOnTopHint)
 splash.setMask(pixmap.mask())
 splash.show()
     
 # Simulate some initialization process with a QTimer
 QTimer.singleShot(2500, lambda: showApp()) # Simulate 3 seconds of initialization
-''' 
+
 
 def showApp():
 # create main window
-    #splash.hide()
+    splash.hide()
     w = MainWindow()
     w.show()
     
-showApp()
+#showApp()
 app.exec_()

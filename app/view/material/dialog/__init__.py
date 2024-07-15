@@ -1,2 +1,5 @@
-from .add_material_dialog import AddMaterialDialog
 from .mouvement_material_dialog import MouvementMaterialDialog
+from .new_material_dialog import NewMaterialDialog
+from .initial_material_dialog import InitialMaterialDialog
+from .lot_dialog import LotDialog
+from .reint_material_dialog import ReintMaterialDialog

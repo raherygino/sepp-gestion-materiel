@@ -185,6 +185,32 @@ class Model:
         cursor.execute(sql)
         return cursor.fetchall()
         
+    def select_join(self, columns, toTable, column, **kwargs):
+        sql = f"SELECT "
+        sql += ', '.join([f'{col}' for col in columns])
+        sql += f" FROM {self.TABLE} "
+        #if len(kwargs) != 0:
+        sql += f" LEFT JOIN {toTable} ON {toTable}.id = {self.TABLE}.{column}"
+        if len(kwargs) != 0:
+            keys = kwargs.keys()
+            cols = ''
+            for key in kwargs:
+                if key != 'order' and key != 'group':
+                    cols += f' {key.replace('__','.')}="{kwargs.get(key)}" AND '
+            
+            #cols = ' AND '.join([f'{key}="{kwargs.get(key)}"' for key in kwargs])
+            if cols != '':
+                sql += f' WHERE {cols[0:len(cols)-4]} ' 
+            if 'group' in keys and 'order':
+                sql += f" GROUP BY {kwargs.get('group')}"
+            if 'order' in keys:
+                sql += f" ORDER BY {kwargs.get('order')} ASC"
+        #print(sql)
+        cursor = self.conn.cursor()
+        cursor.execute(sql)
+        return cursor.fetchall()
+        #return []
+        
     def join(self, fromCol, toCol, columns, secondTable, **kwargs):
         sql = f"SELECT ";
         sql += ', '.join([f'{col}' for col in columns])

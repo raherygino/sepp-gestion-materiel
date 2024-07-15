@@ -5,14 +5,18 @@ from dataclasses import dataclass
 @dataclass
 class Material(Entity):
     id: int = 0
-    date: str = ""
+    lot_name: str  = ""
     name: str = ""
-    type: str = ""
-    brand: str = ""
-    model: str = ""
-    accessory: str = ""
-    state: str = ""
-    fonctionality: str = ""
+    into_account: int = 0
+    in_good: int = 0
+    in_store: int = 0
+    be: int = 0
+    breakdown: int = 0
+    grade: str = ""
+    full_name: str = ""
+    contact: str = ""
     motif: str = ""
-    observation: str = ""
-    count: int = 0
+    place: str = ""
+    date_perc: str = ""
+    date_reinteg: str = ""
+    state_mat_integr: str = ""

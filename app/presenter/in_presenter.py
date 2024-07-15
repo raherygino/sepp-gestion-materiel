@@ -9,16 +9,16 @@ class InPresenter(BasePresenter):
     
     def __init__(self, parent):
         self.model: MaterialModel = parent.model
-        self.data = self.fetchAll()
+        self.data = []
         
         super().__init__(self.data , parent)
-        self.view: EntryTab = parent.view.entryInterface
+        '''self.view: EntryTab = parent.view.entryInterface
         self.refresh.connect(lambda: self.fetchData(self.data ))
         self.setTableHeaderLabels(["Id", "Date", "Nombre", "Rubriques", "Types","Marque", "Model", ""])
         self.view.tableView.contextMenuEvent = lambda e : self.tableRightClick(e)
-        self.view.parent.refresh.connect(lambda: self.fetchData(self.fetchAll()))
+        self.view.parent.refresh.connect(lambda: self.fetchData(self.fetchAll()))'''
         
-    def fetchAll(self):
+    '''def fetchAll(self):
         tableMove = "mouvements"
         return self.model.join(
             "id", "material_id", 
@@ -51,4 +51,4 @@ class InPresenter(BasePresenter):
         
     def handleResult(self, data: list):
         super().handleResult(data)
-        self.view.tableView.setData(data)
+        self.view.tableView.setData(data)'''

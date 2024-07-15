@@ -5,7 +5,15 @@ from dataclasses import dataclass
 @dataclass
 class Mouvement(Entity):
     id: int = 0
-    date: str = ""
-    material_id: str = ""
-    type: str = ""
-    count: int = 0
+    material_id: int  = 0
+    in_good: int = 0
+    grade: str = ""
+    full_name: str = ""
+    contact: str = ""
+    motif: str = ""
+    place: str = ""
+    be: int = 0
+    breakdown: int = 0
+    date_perc: str = ""
+    date_reinteg: str = ""
+    state_mat_integr: str = ""

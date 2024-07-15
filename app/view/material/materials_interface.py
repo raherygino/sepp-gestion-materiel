@@ -24,13 +24,11 @@ class MaterialsInterface(QWidget):
         self.hBoxLayout = QHBoxLayout()
 
         self.depotInterface = DepotTab(self)
-        self.entryInterface = EntryTab(self)
         self.outInterface = OutTab(self)
 
         # add items to pivot
-        self.addSubInterface(self.depotInterface, 'depotInterface', 'Matériels au dépot')
-        self.addSubInterface(self.entryInterface, 'entryInterface', 'Matériels entrants')
-        self.addSubInterface(self.outInterface, 'outInterface', 'Matériels sortis')
+        self.addSubInterface(self.depotInterface, 'depotInterface', 'Matériels en magasin')
+        self.addSubInterface(self.outInterface, 'outInterface', 'Mouvements du Matériel')
 
         self.__initCommandBar()
         self.vBoxLayout.addWidget(self.stackedWidget)
@@ -40,7 +38,7 @@ class MaterialsInterface(QWidget):
         self.countLayout.setContentsMargins(0,0,0,0)
         self.countLayout.setAlignment(Qt.AlignRight)
         self.titleCount = StrongBodyLabel("Nombre")
-        self.valueCount = BodyLabel("1220")
+        self.valueCount = BodyLabel("")
         self.countLayout.addWidget(self.titleCount)
         self.countLayout.addWidget(self.valueCount)        
         self.vBoxLayout.addLayout(self.countLayout)
@@ -67,29 +65,18 @@ class MaterialsInterface(QWidget):
         setFont(self.commandBar, 14)
         
         self.addAction = Action(FluentIcon.APPLICATION, "Nouveau matériel", self)
-        
-        self.importAction = Action(FluentIcon.DOWNLOAD, "Importer", self)
-        self.exportActionCsv = Action(FluentIcon.QUICK_NOTE, "CSV", self)
-        self.exportAction = Action(FluentIcon.DOCUMENT, "Excel", self)
-        self.dropDownButtonExp = self.createDropDownButton('Exporter', 
-                                                        FluentIcon.SHARE,[self.exportAction, self.exportActionCsv], self)
+        self.addLot = Action(FluentIcon.FOLDER, "LOT", self)
+        self.exportAction = Action(FluentIcon.SHARE, "Exporter", self)
         self.deleteAction = Action(FluentIcon.DELETE, "Supprimer tous", self)   
         
         self.commandBar.addAction(self.addAction)
-        self.commandBar.addAction(self.importAction)
-        self.commandBar.addWidget(self.dropDownButtonExp)
-        self.commandBar.addSeparator()
-        self.commandBar.addAction(self.deleteAction)
+        self.commandBar.addAction(self.addLot)
+        self.commandBar.addAction(self.exportAction)
         
-        self.titleLabel = StrongBodyLabel("Base des données")
-        
-        self.searchLineEdit = SearchLineEdit(self)
-        self.searchLineEdit.setPlaceholderText("Recherche")
-        self.searchLineEdit.setFixedWidth(200)
+        self.titleLabel = StrongBodyLabel("Matériels en magasin")
         
         self.hBoxLayout.addWidget(self.commandBar)
         self.hBoxLayout.addWidget(self.titleLabel)
-        self.hBoxLayout.addWidget(self.searchLineEdit)
         self.vBoxLayout.addLayout(self.hBoxLayout)
         
     def addSubInterface(self, widget: QLabel, objectName, text):
